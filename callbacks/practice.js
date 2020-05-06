@@ -96,8 +96,7 @@ multiply(4, 3, function(answer){
 */
 
 const contains = (arr, name, cb) => {
-  for (i = 0; i < arr.length; i++)
-  if (name === i) {
+  if (arr.includes (name)) {
     cb (true)
   } else {
     cb (false)
@@ -124,8 +123,17 @@ contains(names, 'Colt', function(result){
 */
 
 const uniq = (arr, cb) => {
-
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = arr.length -1; j > i; j--) {
+      if (arr[i] === arr[j]) {
+        arr.splice (j, 1)
+      }
+    }
+  } cb (arr)
 }
+
+
+
 
 // Do not edit the code below.
 uniq(names, function(uniqArr){
@@ -143,8 +151,9 @@ uniq(names, function(uniqArr){
 */
 
 const each = (arr, cb) => {
-  for (let i = 0; i < arr.length; i++)
-    cb (arr.name [i], i)
+  for (let i = 0; i < arr.length; i++) {
+    cb (arr[i], i)
+  }
 }
 
 // Do not edit the code below.
@@ -162,15 +171,14 @@ each(names, function(item, indice){
   When the correct user object is found, invoke the callback with the user object as an argument.
 */
 
-function getUserById (arr, id, cb) {
+const getUserById = (arr, id, cb) => {
   for (let i = 0; i < arr.length; i++) {
     if (id === arr[i].id) {
-      return arr [i]
+      cb (arr[i])
     }
   }
 }
 
-cb (arr[i])
 
 // Do not edit the code below.
 var users = [
